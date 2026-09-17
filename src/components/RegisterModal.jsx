@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MODAL_CONTENT } from '../modalContent';
+import { MODAL_CONTENT } from '../data/modalContent';
 
 // Registration form
 export default function RegisterModal({ type, onClose }) {
@@ -35,15 +35,15 @@ export default function RegisterModal({ type, onClose }) {
                         <form onSubmit={handleSubmit}>
                             <div className='formgrid'>
                                 <div className='field'>
-                                    <label>First Name<span style={{ color : #D32F2F}}>*</span></label>
+                                    <label>First Name<span style={{ color : "#D32F2F" }}>*</span></label>
                                     <input type="text" name="first-name" required />
                                 </div>
                                 <div className='field'>
-                                    <label>Last Name<span style={{ color : #D32F2F}}>*</span></label>
+                                    <label>Last Name<span style={{ color : "#D32F2F"}}>*</span></label>
                                     <input type="text" name="last-name" required />
                                 </div>
                                 <div className='field'>
-                                    <label>Email Address<span style={{ color : #D32F2F}}>*</span></label>
+                                    <label>Email Address<span style={{ color : "#D32F2F"}}>*</span></label>
                                     <input type="email" name="email" required />
                                 </div>
                                 <div className='field'>

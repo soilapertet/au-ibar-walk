@@ -2,8 +2,8 @@ import logo from '../assets/au-ibar-logo.png';
 
 export default function Footer() {
     return (
-        <footer class="footer" id="contact">
-            <div class="foot">
+        <footer className="footer" id="contact">
+            <div className="foot">
                 <div>
                     <img
                         src={logo}
@@ -14,10 +14,10 @@ export default function Footer() {
                 </div>
                 <div>
                     <p>
-                        <strong>Get in touch</strong><br>Events & Partnerships</br>AU-IBAR · African Union
+                        <strong>Get in touch</strong><br/>Events & PartnershipsAU-IBAR · African Union
                     </p>
                 </div>
-                <div class="copy">
+                <div className="copy">
                     © 2026 AU-IBAR Awareness Walk · Demonstration website concept · All event details shown as
                     placeholders until confirmed.
                 </div>

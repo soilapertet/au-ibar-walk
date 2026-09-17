@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import GetInvolved from '.componenets/GetInvolved';
+import GetInvolved from './components/GetInvolved';
 import WalkStats from './components/WalkStats';
 import EventBand from './components/EventBand';
 import Footer from './components/Footer';
