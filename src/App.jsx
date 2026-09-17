@@ -6,11 +6,11 @@ import Hero from './components/Hero';
 import About from './components/About';
 import GetInvolved from '.componenets/GetInvolved';
 import WalkStats from './components/WalkStats';
-import CtaBand from './components/CtaBand';
+import EventBand from './components/EventBand';
 import Footer from './components/Footer';
 import RegisterModal from './components/RegisterModal';
 
-function App() {
+export default function App() {
 
   const [modalType, setModalType] = useState(null);
 
@@ -25,7 +25,7 @@ function App() {
       <About />
       <GetInvolved onOpen={openModal} />
       <WalkStats />
-      <CtaBand onRegister={() => openModal('participant')} />
+      <EventBand onRegister={() => openModal('participant')} />
       <Footer />
       {modalType && 
         <RegisterModal 
@@ -37,4 +37,3 @@ function App() {
   );
 }
 
-export default App
