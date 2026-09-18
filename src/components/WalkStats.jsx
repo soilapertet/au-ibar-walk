@@ -1,6 +1,6 @@
 export default function WalkStats() {
     return (
-        <section className="section" id="stats">
+        <section className="section" id="walk-stats">
             <div className="section-inner">
                 <div className="kicker">The Walk</div>
                 <h2>More than a route. A movement.</h2>

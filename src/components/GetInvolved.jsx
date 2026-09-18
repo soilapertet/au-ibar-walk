@@ -13,31 +13,31 @@ export default function GetInvolved({ onOpen }) {
                     products to the event, join us in making the Walk a shared experience.</p>
                 <div className="opps">
                     <div className="opp">
-                        <div className="icon"><FaHandshakeSimple /></div>
+                        <div className="icon"><FaHandshakeSimple size={30}/></div>
                         <h3>Become a Partner</h3>
                         <p>Support the Walk through sponsorship, technical expertise, services or in-kind contributions.</p>
                         <a onClick={(e) => {
                             e.preventDefault();
                             onOpen('partner');
-                        }}>BECOME A PARTNER →</a>
+                        }} style={{ cursor: 'pointer'}}>BECOME A PARTNER →</a>
                     </div>
                     <div className="opp">
-                        <div className="icon"><HiBuildingStorefront /></div>
+                        <div className="icon"><HiBuildingStorefront  size={30}/></div>
                         <h3>Become a Vendor</h3>
                         <p>Showcase products and services to participants and visitors in a vibrant event environment.</p>
                         <a onClick={(e) => {
                             e.preventDefault();
                             onOpen('vendor')
-                        }}>APPLY AS A VENDOR →</a>
+                        }} style={{ cursor: 'pointer'}}>APPLY AS A VENDOR →</a>
                     </div>
                     <div className="opp">
-                        <div className="icon"><FaBuildingColumns /></div>
+                        <div className="icon"><FaBuildingColumns  size={30}/></div>
                         <h3>Become an Exhibitor</h3>
                         <p>Put your organisation, innovation or community initiative in the spotlight.</p>
                         <a onClick={(e) => {
                             e.preventDefault();
                             onOpen('exhibitor');
-                        }}>BECOME AN EXHIBITOR →</a>
+                        }} style={{ cursor: 'pointer'}}>BECOME AN EXHIBITOR →</a>
                     </div>
                 </div>
             </div>

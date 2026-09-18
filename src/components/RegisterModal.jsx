@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { MODAL_CONTENT } from '../data/modalContent';
+import { MODAL_SUCCESS } from '../data/modalSucces';
 
 // Registration form
 export default function RegisterModal({ type, onClose }) {
 
     const [submitted, setSubmitted] = useState(false);
     const content = MODAL_CONTENT[type];
+    const success = MODAL_SUCCESS[type];
 
     const handleSubmit = (e) => {
         e.preventDefault();             // prevent browser's built-in default behaviour for that event
@@ -18,13 +20,9 @@ export default function RegisterModal({ type, onClose }) {
                 <button className="close" onClick={onClose}>x</button>
                 {submitted ? (
                     <>
-                        <div style={{ fontSize: 52 }}>🎉</div>
-                        <div className='kicker'>Thank you</div>
-                        <h2>Expression of interest received.</h2>
-                        <p className='lead'>
-                            This is a demo interaction for the presentation prototype. In the final
-                            website, submissions would be connected to the official event registration system.
-                        </p>
+                        <h2>{success.title}</h2>
+                        <h3>{success.kicker}</h3>
+                        <p className='lead'>{success.lead}</p>
                         <button className='submit' onClick={onClose}>DONE</button>
                     </>
                 ) : (
@@ -56,9 +54,9 @@ export default function RegisterModal({ type, onClose }) {
                                 </div>
                                 <div className='field full'>
                                     <label>Area of Interest</label>
-                                    <select>
+                                    <select value={type} disabled>
                                         <option value="participant">Participant</option>
-                                        <option value="parternship">Partnership</option>
+                                        <option value="partner">Partner</option>
                                         <option value="vendor">Vendor</option>
                                         <option value="exhibitor">Exhibitor</option>
                                     </select>
@@ -68,7 +66,7 @@ export default function RegisterModal({ type, onClose }) {
                                     <textarea placeholder='Tell us a little about your interest...'></textarea>
                                 </div>
                             </div>
-                            <button className='submit'>SUBMIT</button>
+                            <button className='submit'>REGISTER</button>
                         </form>
                     </>
                 )}
