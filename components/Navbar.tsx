@@ -30,8 +30,8 @@ export default function Navbar() {
                     </div>
                 </div>
 
+                <Link href="/#route">Route Info</Link>
                 <Link href="/register">Register</Link>
-                <Link href="/route">Route Info</Link>
                 <Link href="/faq">FAQ</Link>
             </div>
         </nav>

@@ -286,12 +286,24 @@ h1 {
   margin: auto
 }
 
+#why {
+  scroll-margin-top: 100px;
+}
 .kicker {
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 850;
   color: var(--green)
+}
+
+.sub-kicker {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 850;
+  color: var(--green);
+  margin-top: 20px;
 }
 
 h2 {
@@ -312,14 +324,14 @@ h2 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-top: 35px
+  margin-top: 35px;
 }
 
 .card {
   padding: 26px;
   border-radius: 22px;
   background: var(--cream);
-  border: 1px solid #eadfc8
+  border: 1px solid #eadfc8;
 }
 
 .card .icon {
@@ -1111,14 +1123,19 @@ h2 {
 .pillar-card {
   cursor: pointer;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  position: relative
+  position: relative;
 }
 
-.pillar-card:hover,
+.pillar-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px #17312516;
+  border-color: var(--green);
+}
+
 .pillar-card.active {
   transform: translateY(-5px);
   box-shadow: 0 18px 36px #17312516;
-  border-color: var(--green)
+  border-color: var(--green);
 }
 
 .pillar-card .expand {
