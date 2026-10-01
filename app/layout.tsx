@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
+import SponsorBand from "@/components/SponsorBand";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body className="min-h-full flex flex-col">
+        <SponsorBand/>
         <Navbar/>
         {children}
         <Footer/>

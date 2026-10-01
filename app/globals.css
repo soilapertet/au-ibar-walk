@@ -1015,7 +1015,7 @@ h2 {
   padding: 10px 4vw;
   box-shadow: 0 2px 10px #00000008;
   position: relative;
-  z-index: 9
+  z-index: 9;
 }
 
 .program-logos-inner {
@@ -1024,9 +1024,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  overflow-x: auto;
-  scrollbar-width: thin;
+  gap: 25px;
   padding: 2px 4px
 }
 
