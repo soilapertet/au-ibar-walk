@@ -1,5 +1,7 @@
+import Hero from "@/components/Hero";
+
 export default function Home() {
   return (
-    <h1>AU-IBAR Walk</h1>
+    <Hero/>
   );
 }

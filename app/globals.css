@@ -230,10 +230,6 @@ h1 {
   border-right: 1px solid #ffffff25
 }
 
-.event-strip div:last-child {
-  border: 0
-}
-
 .event-strip b {
   display: block;
   font-size: 13px
