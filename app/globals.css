@@ -56,7 +56,6 @@ nav {
   width: 82px;
   object-fit: contain;
   object-position: center;
-  background: #08783d;
   border-radius: 7px;
   padding: 2px
 }
@@ -567,8 +566,6 @@ h2 {
 }
 
 .foot img {
-  height: 68px;
-  background: #fff;
   padding: 7px;
   border-radius: 8px
 }
@@ -974,9 +971,10 @@ h2 {
 }
 
 .mini-links {
+  margin-top: 10px;
   display: flex;
   gap: 10px;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 
 .mini-links a {
@@ -1383,4 +1381,43 @@ h2 {
   .scroll-progress {
     display: none
   }
+}
+
+/* Grouped nav dropdowns — pure CSS, no JS state needed */
+.nav-group {
+  position: relative
+}
+
+.nav-group:focus-within .nav-dropdown,
+.nav-group:hover .nav-dropdown {
+  display: flex
+}
+
+.nav-dropdown {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px #00000020;
+  padding: 8px;
+  z-index: 20
+}
+
+.nav-dropdown a {
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--deep);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px
+}
+
+.nav-dropdown a:hover,
+.nav-dropdown a:focus {
+  background: #eef4ef
 }
