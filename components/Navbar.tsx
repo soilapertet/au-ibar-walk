@@ -40,7 +40,7 @@ export default function Navbar() {
                 </div>
 
                 <Link href="/#route">Route Info</Link>
-                <Link href="/faq">FAQ</Link>
+                <Link href="/#faq">FAQ</Link>
 
                 <RegisterButton type="participant" className="btn">Register Now</RegisterButton>
             </div>

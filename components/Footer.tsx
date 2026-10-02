@@ -29,7 +29,7 @@ export default function Footer() {
                         <a href="#involve">Partner</a>
                         <a href="#involve">Vendor</a>
                         <a href="#involve">Exhibitor</a>
-                        <Link href="/faq">FAQ</Link>
+                        <Link href="/#faq">FAQ</Link>
                     </div>
                 </div>
             </div>
