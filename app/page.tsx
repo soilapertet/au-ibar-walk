@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import GetInvolved from "@/components/GetInvolved";
 import RouteInfo from "@/components/RouteInfo";
+import CTABand from "@/components/CTABand";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <About />
       <GetInvolved/>
       <RouteInfo/>
+      <CTABand/>
     </>
   );
 }
