@@ -1,9 +1,12 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
+import { Footprints } from "lucide-react";
+import { ModalProvider } from "@/components/ModalContext";
 import SponsorBand from "@/components/SponsorBand";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RegisterButton from "@/components/RegisterButton";
 
 export const metadata: Metadata = {
   title: "AU-IBAR Awareness Walk",
@@ -14,10 +17,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body className="min-h-full flex flex-col">
-        <SponsorBand/>
-        <Navbar/>
-        {children}
-        <Footer/>
+        <ModalProvider>
+          <SponsorBand />
+          <Navbar />
+          {children}
+          <Footer />
+          <RegisterButton type="participant" className="floating-join"><span className="paw"><Footprints/></span> JOIN THE WALK</RegisterButton>
+        </ModalProvider>
       </body>
     </html>
   );

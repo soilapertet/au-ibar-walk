@@ -1,4 +1,5 @@
 import Image from "next/image";
+import RegisterButton from "./RegisterButton";
 
 export default function RouteInfo() {
     return (
@@ -60,6 +61,7 @@ export default function RouteInfo() {
                                 target="_blank" rel="noopener noreferrer">
                                 OPEN INTERACTIVE ROUTE →
                             </a>
+                            <RegisterButton type="participant" className="btn">REGISTER →</RegisterButton>
                         </div>
                     </div>
                 </div>

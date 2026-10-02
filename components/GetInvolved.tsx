@@ -1,4 +1,5 @@
 import { getInvolvedData } from "@/data/getInvolvedData";
+import RegisterButton from "./RegisterButton";
 
 export default function GetInvolved() {
     return (
@@ -24,6 +25,7 @@ export default function GetInvolved() {
                                 <Icon size={24}/>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
+                                <RegisterButton type={item.modalType} className="opp-action">{item.buttonLabel}</RegisterButton>
                             </div>
                         )
                     })}

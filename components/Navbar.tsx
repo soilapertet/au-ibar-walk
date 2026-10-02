@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import RegisterButton from "./RegisterButton";
 
 export default function Navbar() {
     return (
@@ -30,9 +31,18 @@ export default function Navbar() {
                     </div>
                 </div>
 
+                <div className="nav-group">
+                    <Link href="/#fees">Register</Link>
+                    <div className="nav-dropdown">
+                        <Link href="/#fees">Registration Fees</Link>
+                        <Link href="/#registration">How To Register</Link>
+                    </div>
+                </div>
+
                 <Link href="/#route">Route Info</Link>
-                <Link href="/register">Register</Link>
                 <Link href="/faq">FAQ</Link>
+
+                <RegisterButton type="participant" className="btn">Register Now</RegisterButton>
             </div>
         </nav>
     )

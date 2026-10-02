@@ -1,4 +1,5 @@
 import Image from "next/image";
+import RegisterButton from "./RegisterButton";
 
 export default function Hero() {
     return (
@@ -11,8 +12,9 @@ export default function Hero() {
                         The AU-IBAR Awareness Walk brings people, livestock, livelihoods and communities together
                         — one step at a time.
                     </p>
-                    {/* Register Button */}
-                    {/* Partner Button */}
+                    <div className="hero-actions">
+                        <RegisterButton type="participant" className="btn">JOIN THE WALK →</RegisterButton>
+                        <a className="btn gold" href="#involve">PARTNER WITH US</a></div>
                     <div className="event-strip">
                         <div><b>DATE</b><small>28 November 2026</small></div>
                         <div><b>VENUE</b><small>AU-IBAR Campus, Westlands</small></div>

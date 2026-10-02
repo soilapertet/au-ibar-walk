@@ -106,7 +106,12 @@ nav {
   font-weight: 800;
   text-decoration: none;
   display: inline-block;
-  box-shadow: 0 8px 20px #08783d33
+  box-shadow: 0 8px 20px #08783d33;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--gold);
 }
 
 .btn.gold {
@@ -286,6 +291,14 @@ h1 {
   margin: auto
 }
 
+.section-outer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content : center;
+  align-items: center;
+}
+
 #why {
   scroll-margin-top: 100px;
 }
@@ -460,7 +473,7 @@ h2 {
 }
 
 .partner {
-  background: #f4f7f3
+  background: #f4f7f3;
 }
 
 .opps {
@@ -1225,7 +1238,9 @@ h2 {
 }
 
 .opp {
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease
 }
 
@@ -1235,12 +1250,15 @@ h2 {
   border-color: var(--green)
 }
 
-.opp .opp-action {
-  display: inline-block;
-  margin-top: 13px;
+.opp p {
+  margin-bottom: 30px;
+}
+.opp-action {
+  margin-top: auto;
   color: var(--green);
   font-weight: 800;
-  text-decoration: none
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .floating-join {
@@ -1259,7 +1277,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 9px;
-  transition: transform .2s ease, box-shadow .2s ease
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
 }
 
 .floating-join:hover {
