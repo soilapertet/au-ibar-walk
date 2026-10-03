@@ -4,7 +4,7 @@ export default function FAQ() {
             <div className="section-inner">
                 <div className="kicker">Need to know</div>
                 <h2>Frequently Asked Questions.</h2>
-                <p className="lead">Everything you need to know before the Walk.</p>
+                <p className="lead">Everything you need to know before the AU-IBAR Walk.</p>
                 <div className="faq">
                     <details open>
                         <summary>How much does registration cost?</summary>
@@ -22,8 +22,8 @@ export default function FAQ() {
                             exhibition opportunities.</p>
                     </details>
                     <details>
-                        <summary>Where does the Walk start and finish?</summary>
-                        <p>The Walk starts and finishes at the <strong>AU-IBAR Campus in Westlands</strong>. Participants
+                        <summary>Where does the AU-IBAR Walk start and finish?</summary>
+                        <p>the AU-IBAR Walk starts and finishes at the <strong>AU-IBAR Campus in Westlands</strong>. Participants
                             can open the interactive route to explore the mapped course.</p>
                     </details>
                     <details>

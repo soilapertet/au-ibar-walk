@@ -5,13 +5,13 @@ export const aboutData = [
         id: 1,
         icon: Eye,
         title: "Make the Work Visible",
-        detail: "AU-IBAR's work is largely invisible to the public. The Walk creates a public platform to bring that work into view."
+        detail: "AU-IBAR's work is largely invisible to the public. the AU-IBAR Walk creates a public platform to bring that work into view."
     },
     {
         id: 2,
         icon: Handshake,
         title: "Bring Africa Together",
-        detail: "The Walk engages citizens, governments, AU bodies, diplomats, partners, the private sector, civil society, women, youth and media."
+        detail: "the AU-IBAR Walk engages citizens, governments, AU bodies, diplomats, partners, the private sector, civil society, women, youth and media."
     },
     {
         id: 3,

@@ -18,8 +18,8 @@ export const getInvolvedData : Data [] = [
         icon: Handshake,
         modalType: "partner",
         title: "Become a Partner",
-        description: "Support the Walk through sponsorship, technical expertise, services or in-kind contributions.",
-        buttonLabel: "BECOME A PARTNER →"
+        description: "Support the AU-IBAR Walk through sponsorship, technical expertise, services or in-kind contributions.",
+        buttonLabel: "REGISTER AS A PARTNER →"
     },
     {
         id: 2,
@@ -27,7 +27,7 @@ export const getInvolvedData : Data [] = [
         modalType: "vendor",
         title: "Become a Vendor",
         description: "Showcase products and services to participants and visitors in a vibrant event environment.",
-        buttonLabel: "APPLY AS A VENDOR →"
+        buttonLabel: "REGISTER AS A VENDOR →"
     },
     {
         id: 3,
@@ -35,6 +35,6 @@ export const getInvolvedData : Data [] = [
         modalType: "exhibitor",
         title: "Become an Exhibitor",
         description: "Put your organisation, innovation or community initiative in the spotlight.",
-        buttonLabel: "BECOME AN EXHIBITOR →"
+        buttonLabel: "REGISTER AS AN EXHIBITOR →"
     }
 ]

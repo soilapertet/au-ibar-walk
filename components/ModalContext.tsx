@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
+import RegistrationModal from "./RegistrationModal";
 
 // Specify which version of the modal should show
 export type ModalType = "participant" | "corporate" | "child" | "vendor" | "exhibitor" | "partner";
@@ -33,6 +34,7 @@ export function ModalProvider({ children } : { children : ReactNode }) {
         // the value the ModalProvider is holding
         <ModalContext.Provider value={{ modalType, openModal, closeModal }}>
             {children}
+            <RegistrationModal/>
         </ModalContext.Provider>
     );
 }

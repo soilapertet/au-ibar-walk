@@ -295,7 +295,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  justify-content : center;
+  justify-content: center;
   align-items: center;
 }
 
@@ -608,38 +608,49 @@ h2 {
 }
 
 .modal {
-  display: none;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   inset: 0;
   background: #062d1ccc;
   z-index: 50;
-  align-items: center;
-  justify-content: center;
   padding: 20px
 }
 
+.modal-header {
+  display: flex;
+  flex-direction: column;
+}
 .modal.open {
-  display: flex
+  display: flex;
 }
 
 .modalbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   max-width: 650px;
   width: 100%;
   border-radius: 26px;
   padding: 32px;
   max-height: 90vh;
-  overflow: auto
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 .close {
-  float: right;
+  position: absolute;
+  right: 5%;
+  margin-bottom: 10px;
   border: 0;
   background: #eef4ef;
   border-radius: 50%;
-  width: 36px;
+  width: 39px;
   height: 36px;
-  font-size: 20px
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .formgrid {
@@ -1253,6 +1264,7 @@ h2 {
 .opp p {
   margin-bottom: 30px;
 }
+
 .opp-action {
   margin-top: auto;
   color: var(--green);

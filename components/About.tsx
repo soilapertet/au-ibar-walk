@@ -14,11 +14,11 @@ export default function About() {
                 <p className="lead">
                     <strong>The AU-IBAR Awareness Walk is a public awareness, partnership and resource-mobilisation initiative,
                         not a one-day event.</strong> An Animal Resources and Livestock Innovation Exhibition and communication materials
-                    will showcase AU-IBAR's work and Campus progress, even though the Walk starts and ends at the current headquarters.
+                    will showcase AU-IBAR's work and Campus progress, even though the AU-IBAR Walk starts and ends at the current headquarters.
                     It links animal resources, continental institutions, and dependent communities to build a wider constituency for investment.
                 </p>
                 <div id="why">
-                    <div className="sub-kicker">The Purpose Behind the Walk</div>
+                    <div className="sub-kicker">The Purpose Behind the AU-IBAR Walk</div>
                     <div className="pillars">
                         {aboutData.map((item, i) => {
                             const Icon = item.icon;

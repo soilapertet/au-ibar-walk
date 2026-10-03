@@ -12,12 +12,12 @@ export default function Fees() {
                     and children walk free.
                 </p>
                 <div className="fee-grid">
-                    {feesData.map((item) => {
+                    {feesData.map((item, i) => {
 
                         const Icon = item.icon;
 
                         return (
-                            <div className="fee-card">
+                            <div key={i} className="fee-card">
                                 {item.badgeLabel && <span className="badge">{item.badgeLabel}</span>}
                                 <div className="fee-icon"><Icon/></div>
                                 <h3>{item.category}</h3>

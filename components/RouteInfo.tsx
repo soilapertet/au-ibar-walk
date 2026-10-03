@@ -5,7 +5,7 @@ export default function RouteInfo() {
     return (
         <section className="section" id="route">
             <div className="section-inner">
-                <div className="kicker">The Walk</div>
+                <div className="kicker">the AU-IBAR Walk</div>
                 <h2>Know the journey before you arrive.</h2>
                 <p className="lead">
                     The final route and operational details will be confirmed by the organising team. The
@@ -67,7 +67,7 @@ export default function RouteInfo() {
                 </div>
                 <div className="schedule">
                     <div className="step"><strong>Registration</strong><small>Check-in & participant support</small></div>
-                    <div className="step"><strong>Warm-up</strong><small>Get ready for the Walk</small></div>
+                    <div className="step"><strong>Warm-up</strong><small>Get ready for the AU-IBAR Walk</small></div>
                     <div className="step"><strong>Walk</strong><small>5 KM community journey</small></div>
                     <div className="step"><strong>Activities</strong><small>Community & partner engagement</small></div>
                     <div className="step"><strong>Celebration</strong><small>Recognition & closing</small></div>

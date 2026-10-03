@@ -40,7 +40,7 @@ export const feesData : Data[] = [
         category: "Child",
         modalType: "child",
         price: "FREE",
-        description: "Children are welcome to join the Walk at no registration cost.",
+        description: "Children are welcome to join the AU-IBAR Walk at no registration cost.",
         buttonLabel: "REGISTER NOW  →"
     },
 ]
