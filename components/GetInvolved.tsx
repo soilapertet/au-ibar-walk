@@ -22,6 +22,7 @@ export default function GetInvolved() {
                                 role="button" 
                                 tabIndex={0}
                             >
+                                {item.price && <span className="badge">RATE: {item.price}</span>}
                                 <Icon size={24}/>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>

@@ -8,6 +8,7 @@ interface Data {
     icon : LucideIcon;
     modalType: ModalType;
     title: string;
+    price?: string;
     description: string;
     buttonLabel: string;
 }
@@ -26,6 +27,7 @@ export const getInvolvedData : Data [] = [
         icon: ShoppingBag,
         modalType: "vendor",
         title: "Become a Vendor",
+        price: "KSH. 10,000",
         description: "Showcase products and services to participants and visitors in a vibrant event environment.",
         buttonLabel: "REGISTER AS A VENDOR →"
     },
@@ -34,6 +36,7 @@ export const getInvolvedData : Data [] = [
         icon: Store,
         modalType: "exhibitor",
         title: "Become an Exhibitor",
+        price: "KSH. 20,000",
         description: "Put your organisation, innovation or community initiative in the spotlight.",
         buttonLabel: "REGISTER AS AN EXHIBITOR →"
     }
