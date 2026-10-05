@@ -44,7 +44,7 @@ export default function RegistrationModal() {
     return (
         <div className="modal" id="modal" onClick={handleClose}>
             <div className="modalbox" onClick={(e) => e.stopPropagation()}>
-                <button className="close" onClick={() => closeModal()}>×</button>
+                <button className="close" onClick={() => handleClose()}>×</button>
                 {submitted && (
                     <>
                         <PartyPopper size={52} />
@@ -63,7 +63,7 @@ export default function RegistrationModal() {
                                 </p>
                             </>
                         )}
-                        <button className="submit" onClick={closeModal}>CLOSE</button>'
+                        <button className="submit" onClick={handleClose}>CLOSE</button>'
                     </>
                 )}
                 {!submitted && registrants.includes(modalType) && (
