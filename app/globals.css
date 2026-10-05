@@ -696,7 +696,8 @@ h2 {
   padding: 14px;
   background: var(--green);
   color: #fff;
-  font-weight: 800
+  font-weight: 800;
+  cursor: pointer;
 }
 
 @media(max-width:900px) {

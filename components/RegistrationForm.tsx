@@ -1,6 +1,20 @@
-export default function RegistrationForm() {
+interface RegistrationFormProps {
+    onSuccess: () => void;
+}
+
+export default function RegistrationForm({ onSuccess } : RegistrationFormProps) {
+
+    // Review what's going in this function
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data);
+        onSuccess();
+    }
+
     return (
-        <form id="registrationForm">
+        <form id="registrationForm" onSubmit={handleSubmit}>
             <div id="formFields" className="formgrid">
                 <div className="field">
                     <label>First Name</label>

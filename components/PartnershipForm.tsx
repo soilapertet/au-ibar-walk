@@ -1,6 +1,20 @@
-export default function PartnershipForm() {
+interface PartnershipFormProps {
+    onSuccess: () => void;
+}
+
+export default function PartnershipForm({ onSuccess } : PartnershipFormProps) {
+
+    // Review what's going in this function
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data);
+        onSuccess();
+    }
+
     return (
-        <form id="modalForm">
+        <form id="modalForm" onSubmit={handleSubmit}>
             <div id="formFields" className="formgrid">
                 <div className="field">
                     <label>First Name</label>
