@@ -9,7 +9,7 @@ export default function SponsorBanner() {
                 justifyContent: "center",
                 alignItems: "center"
             }}>
-            <h2 className="kicker">Proudly Sponsored by</h2>
+            <h2 className="kicker">In Partnership With</h2>
             <a
                 href="https://ecobank.com/ke/personal-banking"
                 target="_blank"
