@@ -2,12 +2,13 @@ import Image from "next/image";
 
 export default function SponsorBanner() {
     return (
-        <section className="section fees" id="sponsor-banner"
+        <section className="fees" id="sponsor-banner"
             style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                padding: "60px"
             }}>
             <h2 className="kicker">In Partnership With</h2>
             <a
@@ -16,7 +17,7 @@ export default function SponsorBanner() {
                 rel="noopener noreferrer"
                 style={{ 
                     display: "block",
-                    width: "35%", 
+                    width: "30%", 
                     marginTop: "40px", 
                     cursor: "pointer"}}
                 >
