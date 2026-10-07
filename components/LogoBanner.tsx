@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function SponsorBand() {
+export default function LogoBanner() {
     return (
         <div className="program-logos">
             <div className="program-logos-inner">

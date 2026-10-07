@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Footprints } from "lucide-react";
 import { ModalProvider } from "@/components/ModalContext";
-import SponsorBand from "@/components/SponsorBand";
+import LogoBanner from "@/components/LogoBanner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RegisterButton from "@/components/RegisterButton";
@@ -18,11 +18,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en">
       <body className="min-h-full flex flex-col">
         <ModalProvider>
-          <SponsorBand />
+          <LogoBanner />
           <Navbar />
           {children}
           <Footer />
-          <RegisterButton type="participant" className="floating-join"><span className="paw"><Footprints/></span> JOIN THE WALK</RegisterButton>
+          <RegisterButton type="participant" className="floating-join"><span className="paw"><Footprints /></span> JOIN THE WALK</RegisterButton>
         </ModalProvider>
       </body>
     </html>

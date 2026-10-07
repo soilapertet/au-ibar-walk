@@ -18,7 +18,7 @@ export default function About() {
                     It links animal resources, continental institutions, and dependent communities to build a wider constituency for investment.
                 </p>
                 <div id="why">
-                    <div className="sub-kicker">The Purpose Behind the AU-IBAR Walk</div>
+                    <div className="sub-kicker">The Purpose Behind the Walk</div>
                     <div className="pillars">
                         {aboutData.map((item, i) => {
                             const Icon = item.icon;
