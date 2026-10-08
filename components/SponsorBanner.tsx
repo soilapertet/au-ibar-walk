@@ -8,7 +8,7 @@ export default function SponsorBanner() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                padding: "60px"
+                padding: "50px"
             }}>
             <h2 className="kicker">In Partnership With</h2>
             <a
@@ -17,8 +17,8 @@ export default function SponsorBanner() {
                 rel="noopener noreferrer"
                 style={{ 
                     display: "block",
-                    width: "30%", 
-                    marginTop: "40px", 
+                    width: "20%", 
+                    marginTop: "10px", 
                     cursor: "pointer"}}
                 >
                 <Image
