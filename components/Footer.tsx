@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import TermsNavLink from "./TermsNavLink";
 
 export default function Footer() {
     return (
@@ -30,6 +31,7 @@ export default function Footer() {
                         <a href="#involve">Vendor</a>
                         <a href="#involve">Exhibitor</a>
                         <Link href="/#faq">FAQ</Link>
+                        <TermsNavLink />
                     </div>
                 </div>
             </div>
