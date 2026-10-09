@@ -23,7 +23,7 @@ export default function Hero() {
                 </div>
                 <div className="hero-logo">
                     <Image
-                        src="/hero-walk-logo.png"
+                        src="/hero-walk-logo.jpeg"
                         alt="AU-IBAR Walking for Livelihoods, Livestock and Communities"
                         width={1254}
                         height={1117}
