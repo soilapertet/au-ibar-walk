@@ -1,6 +1,5 @@
 import { Handshake, LucideIcon, ShoppingBag, Store } from "lucide-react";
 import { ModalType } from "@/components/ModalContext";
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 
 // Define the blueprint/structure of each data item
 interface Data {

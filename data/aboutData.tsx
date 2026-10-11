@@ -1,6 +1,14 @@
-import { Eye, Handshake, Landmark, Sprout } from "lucide-react";
+import { Eye, Handshake, Landmark, LucideIcon, Sprout } from "lucide-react";
+import { ReactNode } from "react";
 
-export const aboutData = [
+interface Data {
+    id: number;
+    icon: LucideIcon;
+    title: string;
+    detail: string | ReactNode;
+}
+
+export const aboutData : Data[] = [
     {
         id: 1,
         icon: Eye,

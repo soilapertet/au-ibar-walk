@@ -1,10 +1,10 @@
-interface DataObj {
+interface Data {
     kicker: string;
     title: string;
     lead: string;
 }
 
-export const partnershipData : Record<"partner" | "vendor" | "exhibitor", DataObj>= {
+export const partnershipData : Record<"partner" | "vendor" | "exhibitor", Data>= {
     partner: {
         kicker: 'Partnerships',
         title: 'Become a Partner',

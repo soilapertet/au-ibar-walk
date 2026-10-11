@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import TermsModal from "./TermsModal";
+import { countriesData } from "@/data/countriesData";
 
 interface RegistrationFormProps {
     onSuccess: () => void;
@@ -9,6 +10,7 @@ interface RegistrationFormProps {
 export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
 
     const [showTerms, setShowTerms] = useState(false);
+    const [participationType, setParticipationType] = useState("");
 
     // Review what's going in this function
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -41,7 +43,12 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
                     </div>
                     <div className="field">
                         <label>Nationality</label>
-                        <input name="nationality" required />
+                        <select name="nationality" required defaultValue="">
+                            <option value="" disabled>Select your nationality</option>
+                            {countriesData.map((country) => (
+                                <option key={country}>{country}</option>
+                            ))};
+                        </select>
                     </div>
                     <div className="field">
                         <label>Age</label>
@@ -51,33 +58,43 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
                         <label>Gender</label>
                         <select name="gender" required>
                             <option value="" disabled>Select gender</option>
-                            <option>Female</option>
-                            <option>Male</option>
-                            <option>Prefer not to say</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="X">Prefer not to say</option>
                         </select>
                     </div>
                     <div className="field">
                         <label>T-shirt Size</label>
                         <select name="tshirt" required>
                             <option value="" disabled>Select size</option>
-                            <option>XS</option>
-                            <option>S</option>
-                            <option>M</option>
-                            <option>L</option>
-                            <option>XL</option>
-                            <option>2XL</option>
-                            <option>3XL</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="2XL">2XL</option>
+                            <option value="3XL">3XL</option>
                         </select>
                     </div>
                     <div className="field full">
                         <label>How would you like to take part?</label>
-                        <select name="interest" required>
+                        <select 
+                            name="interest" 
+                            required
+                            value={participationType}
+                            onChange={(e) => setParticipationType(e.target.value)}>
                             <option value="" disabled>Select an option</option>
-                            <option>Individual Participant</option>
-                            <option>Corporate Group</option>
-                            <option>Child</option>
+                            <option value="Individual Participant">Individual Participant</option>
+                            <option value="Corporate Group">Corporate Group</option>
+                            <option value="Child">Child</option>
                         </select>
                     </div>
+                    {participationType === "Corporate Group" && (
+                        <div className="field">
+                            <label>How many group members will be attending?</label>
+                            <input name="groupSize" type="number" min="1" required></input>
+                        </div>
+                    )}
                 </div>
                 <div className="terms-check">
                     <label>
