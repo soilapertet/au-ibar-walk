@@ -1,117 +1,227 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { AlertCircle } from "lucide-react";
 import TermsModal from "./TermsModal";
 import { countriesData } from "@/data/countriesData";
 
 interface RegistrationFormProps {
     onSuccess: () => void;
+    onError?: (hasError: boolean) => void;
 }
 
-export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
+export default function RegistrationForm({ onSuccess, onError }: RegistrationFormProps) {
 
     const [showTerms, setShowTerms] = useState(false);
     const [participationType, setParticipationType] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    // Review what's going in this function
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries());
-        console.log(data);
-        onSuccess();
+    // Create a ref for the top of the registration form
+    const topRef = useRef<HTMLDivElement>(null);
+
+    function handleSetError(msg: string | null) {
+        setError(msg);
+        if (onError) {
+            onError(!!msg);
+        }
+
+        if (msg) {
+            setTimeout(() => {
+                topRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 50)
+        }
     }
 
+    // Review what's going in this function
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        handleSetError(null);
+        setLoading(true);
+
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+
+        // Debugging purposes
+        console.log("Form Data Entries: ", data);
+
+        try {
+            const response = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "Failed to submit registration. Please try again.");
+            }
+
+            onSuccess();
+        } catch (err: any) {
+            handleSetError(err.message || "An unexpected error occured.");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    // --- Form View ---
     return (
         <>
-            <form id="registrationForm" onSubmit={handleSubmit}>
-                <div id="formFields" className="formgrid">
-                    <div className="field">
-                        <label>First Name</label>
-                        <input name="first-name" required />
-                    </div>
-                    <div className="field">
-                        <label>Last Name</label>
-                        <input name="last-name" required />
-                    </div>
-                    <div className="field">
-                        <label>Telephone Number</label>
-                        <input name="telephone" type="tel" inputMode="tel" placeholder="e.g. 0712 345 678" required />
-                    </div>
-                    <div className="field">
-                        <label>Email Address</label>
-                        <input name="email" type="email" required />
-                    </div>
-                    <div className="field">
-                        <label>Nationality</label>
-                        <select name="nationality" required defaultValue="">
-                            <option value="" disabled>Select your nationality</option>
-                            {countriesData.map((country) => (
-                                <option key={country}>{country}</option>
-                            ))};
-                        </select>
-                    </div>
-                    <div className="field">
-                        <label>Age</label>
-                        <input name="age" type="number" min="1" max="120" required />
-                    </div>
-                    <div className="field">
-                        <label>Gender</label>
-                        <select name="gender" required>
-                            <option value="" disabled>Select gender</option>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                            <option value="X">Prefer not to say</option>
-                        </select>
-                    </div>
-                    <div className="field">
-                        <label>T-shirt Size</label>
-                        <select name="tshirt" required>
-                            <option value="" disabled>Select size</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="2XL">2XL</option>
-                            <option value="3XL">3XL</option>
-                        </select>
-                    </div>
-                    <div className="field full">
-                        <label>How would you like to take part?</label>
-                        <select 
-                            name="interest" 
-                            required
-                            value={participationType}
-                            onChange={(e) => setParticipationType(e.target.value)}>
-                            <option value="" disabled>Select an option</option>
-                            <option value="Individual Participant">Individual Participant</option>
-                            <option value="Corporate Group">Corporate Group</option>
-                            <option value="Child">Child</option>
-                        </select>
-                    </div>
-                    {participationType === "Corporate Group" && (
-                        <div className="field">
-                            <label>How many group members will be attending?</label>
-                            <input name="groupSize" type="number" min="1" required></input>
+            <div ref={topRef} style={{ marginTop: "50px" }}>
+                <div className="kicker" id="modalKicker">Join the AU-IBAR Walk</div>
+                <h2 id="modalTitle" style={{ marginLeft: "0px" }}>Register for the AU-IBAR Walk</h2>
+                <p
+                    className="lead"
+                    id="modalLead"
+                    style={{ fontSize: "15px", marginBottom: "5px" }}
+                >
+                    Complete the registration details below.
+                </p>
+                <form id="registrationForm" onSubmit={handleSubmit}>
+                    {error && (
+                        <div style={{
+                            background: "#fdf3f2",
+                            border: "1px solid #ebccd1",
+                            borderRadius: "12px",
+                            padding: "16px",
+                            marginBottom: "20px",
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: "12px"
+                        }}>
+                            <div style={{ color: "#d9534f", flexShrink: 0, marginTop: "2px" }}>
+                                <AlertCircle size={22} />
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: "800", color: "#a94442", fontSize: "13px", marginBottom: "4px" }}>
+                                    REGISTRATION ERROR
+                                </div>
+                                <div style={{ color: "#333", fontSize: "14px", lineHeight: "1.4" }}>
+                                    {error}
+                                </div>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => handleSetError(null)}
+                                style={{
+                                    background: "none",
+                                    border: "none",
+                                    color: "#a94442",
+                                    fontWeight: "800",
+                                    cursor: "pointer",
+                                    fontSize: "12px",
+                                    textDecoration: "underline"
+                                }}
+                            >
+                                Dismiss
+                            </button>
                         </div>
                     )}
-                </div>
-                <div className="terms-check">
-                    <label>
-                        <input type="checkbox" name="agreedToTerms" required />
-                        I agree to the{" "}
-                        <button
-                            type="button"
-                            className="terms-link"
-                            onClick={() => setShowTerms(true)}
-                        >
-                            Terms and Conditions
-                        </button>
-                    </label>
-                </div>
-                <button className="submit" id="formSubmit">SUBMIT REGISTRATION</button>
-            </form>
-            <TermsModal open={showTerms} onClose={() => setShowTerms(false)} />
+                    <div id="formFields" className="formgrid">
+                        <div className="field">
+                            <label>First Name</label>
+                            <input name="firstName" required />
+                        </div>
+                        <div className="field">
+                            <label>Last Name</label>
+                            <input name="lastName" required />
+                        </div>
+                        <div className="field">
+                            <label>Telephone Number</label>
+                            <input
+                                name="telephone"
+                                type="tel"
+                                inputMode="tel"
+                                placeholder="e.g. 0712345678"
+                                required />
+                        </div>
+                        <div className="field">
+                            <label>Email Address</label>
+                            <input
+                                name="email"
+                                type="email"
+                                inputMode="email"
+                                placeholder="e.g. janedoe@email.com"
+                                required />
+                        </div>
+                        <div className="field">
+                            <label>Nationality</label>
+                            <select name="nationality" required defaultValue="">
+                                <option value="" disabled>Select your nationality</option>
+                                {countriesData.map((country) => (
+                                    <option key={country}>{country}</option>
+                                ))};
+                            </select>
+                        </div>
+                        <div className="field">
+                            <label>Age</label>
+                            <input name="age" type="number" min="1" max="70" required />
+                        </div>
+                        <div className="field">
+                            <label>Gender</label>
+                            <select name="gender" required>
+                                <option value="" disabled>Select gender</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="X">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div className="field">
+                            <label>T-shirt Size</label>
+                            <select name="tshirtSize" required defaultValue="">
+                                <option value="" disabled>Select size</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="2XL">2XL</option>
+                                <option value="3XL">3XL</option>
+                            </select>
+                        </div>
+                        <div className="field full">
+                            <label>How would you like to take part?</label>
+                            <select
+                                name="registrationType"
+                                required
+                                value={participationType}
+                                onChange={(e) => setParticipationType(e.target.value)}>
+                                <option value="" disabled>Select an option</option>
+                                <option value="Individual Participant">Individual Participant</option>
+                                <option value="Corporate Group">Corporate Group</option>
+                                <option value="Child">Child</option>
+                            </select>
+                        </div>
+                        {participationType === "Corporate Group" && (
+                            <div className="field">
+                                <label>How many group members will be attending?</label>
+                                <input name="groupSize" type="number" min="1" required></input>
+                            </div>
+                        )}
+                    </div>
+                    <div className="terms-check">
+                        <label>
+                            <input type="checkbox" name="agreedToTerms" required />
+                            I agree to the{" "}
+                            <button
+                                type="button"
+                                className="terms-link"
+                                onClick={() => setShowTerms(true)}
+                            >
+                                Terms and Conditions
+                            </button>
+                        </label>
+                    </div>
+                    <button className="submit" id="formSubmit" disabled={loading}>
+                        {loading ? "SUBMITTING..." : "SUBMIT REGISTRATION"}
+                    </button>
+                </form>
+                <TermsModal open={showTerms} onClose={() => setShowTerms(false)} />
+            </div>
         </>
     )
 }

@@ -20,6 +20,24 @@ export async function POST(request: Request) {
         "registrationType"
     ];
 
+    const formatFieldName = (field: string) => {
+
+        const labels: Record<string, string> = {
+            firstName : "First Name",
+            lastName : "Last Name",
+            telephone : "Telephone Number",
+            email: "Email Address",
+            nationality : "Nationality",
+            age : "Age",
+            gender : "Gender",
+            tshirtSize : "T-Shirt Size",
+            registrationType : "Registration Type",
+            groupSize : "Group Size",
+        };
+
+        return labels[field] || field;
+    }
+
     // Define the valid registration types
     const validRegistrationType = ["Individual Participant", "Corporate Group", "Child"];
 
@@ -27,7 +45,7 @@ export async function POST(request: Request) {
     for (const field of requiredFields) {
         if (!data[field]) {
             return NextResponse.json(
-                { error: `Missing required field: ${field}` },
+                { error: `Please fill in the required field: ${formatFieldName(field)}` },
                 { status: 400 }
             )
         }
@@ -36,7 +54,7 @@ export async function POST(request: Request) {
     // Verify registration type
     if(!validRegistrationType.includes(data.registrationType)) {
         return NextResponse.json(
-            { error: "Invalid registration type." },
+            { error: "Please choose a valid registration option." },
             { status: 400 }
         )
     }
@@ -67,7 +85,7 @@ export async function POST(request: Request) {
     if (error) {
         console.error("Supabase insert error: ", error);
         return NextResponse.json(
-            { error: "Something went wrong saving your registration details." },
+            { error: "We ran into an issue submitting your registration. Please check your details and try again." },
             { status: 500 }
         )
     }
