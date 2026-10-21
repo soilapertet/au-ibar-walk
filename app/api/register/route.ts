@@ -7,6 +7,10 @@ export async function POST(request: Request) {
     // Save the data sent from the client
     const data = await request.json();
 
+        
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^(?:\+254|0)[17]\d{8}$/;
+
     // Define the required fields per participant registration
     const requiredFields = [
         "firstName",
@@ -46,6 +50,22 @@ export async function POST(request: Request) {
         if (!data[field]) {
             return NextResponse.json(
                 { error: `Please fill in the required field: ${formatFieldName(field)}` },
+                { status: 400 }
+            )
+        }
+
+        // Verify user entered a valid email
+        if(!emailRegex.test(data.email)) {
+            return NextResponse.json(
+                { error : "Please enter a valid email address" },
+                { status: 400 }
+            )
+        }
+
+        // Verify user entered a valid email
+        if(!phoneRegex.test(data.telephone)) {
+            return NextResponse.json(
+                { error : "Please enter a valid telephone number" },
                 { status: 400 }
             )
         }

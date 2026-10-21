@@ -137,6 +137,15 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                 type="tel"
                                 inputMode="tel"
                                 placeholder="e.g. 0712345678"
+                                pattern="^(?:\+254|0)[17]\d{8}$"
+                                onInvalid={(e) =>
+                                    (e.target as HTMLInputElement).setCustomValidity(
+                                        "Please enter a valid phone number (e.g., 0712345678 or +254712345678)"
+                                    )
+                                }
+                                onInput={(e) =>
+                                    (e.target as HTMLInputElement).setCustomValidity("")
+                                }
                                 required />
                         </div>
                         <div className="field">
@@ -146,6 +155,15 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                 type="email"
                                 inputMode="email"
                                 placeholder="e.g. janedoe@email.com"
+                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                onInvalid={(e) =>
+                                    (e.target as HTMLInputElement).setCustomValidity(
+                                        "Please enter a valid email address (e.g., jane@example.com)"
+                                    )
+                                }
+                                onInput={(e) =>
+                                    (e.target as HTMLInputElement).setCustomValidity("")
+                                }
                                 required />
                         </div>
                         <div className="field">
