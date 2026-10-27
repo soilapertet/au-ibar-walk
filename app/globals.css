@@ -598,10 +598,10 @@ h2 {
   line-height: 1.6
 }
 
-.terms-modal p { 
-  color:var(--ink);
+.terms-modal p {
+  color: var(--ink);
   max-width: none;
-} 
+}
 
 .terms-footer-link {
   background: none;
@@ -610,7 +610,8 @@ h2 {
   margin: 0;
   font: inherit;
   font-size: 12px;
-  color: #000;  /* whatever you actually want — this breaks the inheritance chain */
+  color: #000;
+  /* whatever you actually want — this breaks the inheritance chain */
   text-decoration: underline;
   cursor: pointer;
 }
@@ -1610,4 +1611,53 @@ details {
     transform: rotateX(0deg);
     opacity: 1
   }
+}
+
+/* Per-member t-shirt size grid for corporate group registrations */
+.group-sizes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 8px
+}
+
+/* Size quantity breakdown for large corporate groups */
+.size-quantity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 12px;
+  margin-top: 8px
+}
+
+.size-quantity-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px
+}
+
+.size-quantity-row label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #355247
+}
+
+.size-quantity-row input {
+  border: 1px solid #d7e1da;
+  border-radius: 10px;
+  padding: 10px;
+  font: inherit
+}
+
+.size-total {
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 10px
+}
+
+.size-total.ok {
+  color: var(--green)
+}
+
+.size-total.warn {
+  color: #b3541e
 }

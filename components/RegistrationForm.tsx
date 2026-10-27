@@ -4,6 +4,8 @@ import { AlertCircle } from "lucide-react";
 import TermsModal from "./TermsModal";
 import { countriesData } from "@/data/countriesData";
 
+const TSHIRT_SIZES = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+
 interface RegistrationFormProps {
     onSuccess: () => void;
     onError?: (hasError: boolean) => void;
@@ -12,9 +14,17 @@ interface RegistrationFormProps {
 export default function RegistrationForm({ onSuccess, onError }: RegistrationFormProps) {
 
     const [showTerms, setShowTerms] = useState(false);
+    const [groupSize, setGroupSize] = useState(0);
     const [participationType, setParticipationType] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // Initialize a dictionary to store the tshirt size and its corresponding quantity
+    const [sizeQuantities, setSizeQuantities] = useState<Record<string, number>>(
+        Object.fromEntries(TSHIRT_SIZES.map((size) => [size, 0]))
+    );
+
+    const totalEntered = Object.values(sizeQuantities).reduce((sum, n) => sum + n, 0);
 
     // Create a ref for the top of the registration form
     const topRef = useRef<HTMLDivElement>(null);
@@ -32,11 +42,23 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
         }
     }
 
+    function handleQuantityChange(size: string, value: string) {
+        setSizeQuantities((prev) => ({
+            ...prev,
+            [size]: Math.max(0, Number(value) || 0),
+        }));
+    }
+
     // Review what's going in this function
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-
         handleSetError(null);
+
+        if (participationType === "Corporate Group" && totalEntered !== groupSize) {
+            alert(`Size quantities (${totalEntered}) must add up to your group size (${groupSize}).`);
+            return;
+        }
+
         setLoading(true);
 
         const formData = new FormData(e.currentTarget);
@@ -172,7 +194,7 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                 <option value="" disabled>Select your nationality</option>
                                 {countriesData.map((country) => (
                                     <option key={country}>{country}</option>
-                                ))};
+                                ))}
                             </select>
                         </div>
                         <div className="field">
@@ -188,19 +210,6 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                 <option value="X">Prefer not to say</option>
                             </select>
                         </div>
-                        <div className="field">
-                            <label>T-shirt Size</label>
-                            <select name="tshirtSize" required defaultValue="">
-                                <option value="" disabled>Select size</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="2XL">2XL</option>
-                                <option value="3XL">3XL</option>
-                            </select>
-                        </div>
                         <div className="field full">
                             <label>How would you like to take part?</label>
                             <select
@@ -214,10 +223,53 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                 <option value="Child">Child</option>
                             </select>
                         </div>
-                        {participationType === "Corporate Group" && (
+                        {participationType === "Corporate Group" ? (
+                            <div className="field full">
+                                <div className="field">
+                                    <label>How many group members will be attending?</label>
+                                    <input
+                                        name="groupSize"
+                                        type="number"
+                                        min="1"
+                                        required
+                                        defaultValue={1}
+                                        onChange={(e) => setGroupSize(Math.max(0, Number(e.target.value) || 0))}
+                                    />
+                                </div>
+                                <div className="field">
+                                    <label>How many of each t-shirt size do you need?</label>
+                                    <div className="size-quantity-grid">
+                                        {TSHIRT_SIZES.map((size) => (
+                                            <div key={size} className="size-quantity-row">
+                                                <label>{size}</label>
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    name={`sizeQty-${size}`}
+                                                    value={sizeQuantities[size]}
+                                                    onChange={(e) => handleQuantityChange(size, e.target.value)}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p className={totalEntered === groupSize ? "size-total ok" : "size-total warn"}>
+                                        {totalEntered} / {groupSize} sizes entered
+                                    </p>
+                                </div>
+                            </div>
+                        ) : (
                             <div className="field">
-                                <label>How many group members will be attending?</label>
-                                <input name="groupSize" type="number" min="1" required></input>
+                                <label>T-shirt Size</label>
+                                <select name="tshirtSize" required defaultValue="">
+                                    <option value="" disabled>Select size</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="2XL">2XL</option>
+                                    <option value="3XL">3XL</option>
+                                </select>
                             </div>
                         )}
                     </div>
