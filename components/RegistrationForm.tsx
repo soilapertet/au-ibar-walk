@@ -203,7 +203,7 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                         </div>
                         <div className="field">
                             <label>Gender</label>
-                            <select name="gender" required>
+                            <select name="gender" required defaultValue="">
                                 <option value="" disabled>Select gender</option>
                                 <option value="Female">Female</option>
                                 <option value="Male">Male</option>
@@ -246,7 +246,7 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                                     type="number"
                                                     min="0"
                                                     name={`sizeQty-${size}`}
-                                                    value={sizeQuantities[size]}
+                                                    defaultValue={0}
                                                     onChange={(e) => handleQuantityChange(size, e.target.value)}
                                                 />
                                             </div>

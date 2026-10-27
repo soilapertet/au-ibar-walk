@@ -1,18 +1,21 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
 
+const VALID_REGISTRATION_TYPES = ["Individual Participant", "Corporate Group", "Child"];
+const TSHIRT_SIZES = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+
 // Server-side validation before inserting registrant data to database
 export async function POST(request: Request) {
 
     // Save the data sent from the client
     const data = await request.json();
 
-        
+    // Define the regex for valid email and phone number
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^(?:\+254|0)[17]\d{8}$/;
 
     // Define the required fields per participant registration
-    const requiredFields = [
+    const baseRequiredFields = [
         "firstName",
         "lastName",
         "telephone",
@@ -20,33 +23,29 @@ export async function POST(request: Request) {
         "nationality",
         "age",
         "gender",
-        "tshirtSize",
         "registrationType"
     ];
 
     const formatFieldName = (field: string) => {
 
         const labels: Record<string, string> = {
-            firstName : "First Name",
-            lastName : "Last Name",
-            telephone : "Telephone Number",
+            firstName: "First Name",
+            lastName: "Last Name",
+            telephone: "Telephone Number",
             email: "Email Address",
-            nationality : "Nationality",
-            age : "Age",
-            gender : "Gender",
-            tshirtSize : "T-Shirt Size",
-            registrationType : "Registration Type",
-            groupSize : "Group Size",
+            nationality: "Nationality",
+            age: "Age",
+            gender: "Gender",
+            registrationType: "Registration Type",
         };
 
         return labels[field] || field;
     }
 
-    // Define the valid registration types
-    const validRegistrationType = ["Individual Participant", "Corporate Group", "Child"];
+    // --- DATA VALIDATION --- //
+    for (const field of baseRequiredFields) {
 
-    // Check for any missing fields 
-    for (const field of requiredFields) {
+        // Check for any missing required fields
         if (!data[field]) {
             return NextResponse.json(
                 { error: `Please fill in the required field: ${formatFieldName(field)}` },
@@ -55,28 +54,28 @@ export async function POST(request: Request) {
         }
 
         // Verify user entered a valid email
-        if(!emailRegex.test(data.email)) {
+        if (!emailRegex.test(data.email)) {
             return NextResponse.json(
-                { error : "Please enter a valid email address" },
+                { error: "Please enter a valid email address" },
                 { status: 400 }
             )
         }
 
         // Verify user entered a valid email
-        if(!phoneRegex.test(data.telephone)) {
+        if (!phoneRegex.test(data.telephone)) {
             return NextResponse.json(
-                { error : "Please enter a valid telephone number" },
+                { error: "Please enter a valid telephone number" },
                 { status: 400 }
             )
         }
-    }
 
-    // Verify registration type
-    if(!validRegistrationType.includes(data.registrationType)) {
-        return NextResponse.json(
-            { error: "Please choose a valid registration option." },
-            { status: 400 }
-        )
+        // Check if registration type is valid
+        if (!VALID_REGISTRATION_TYPES.includes(data.registrationType)) {
+            return NextResponse.json(
+                { error: "Please choose a valid registration option." },
+                { status: 400 }
+            )
+        }
     }
 
     // Check if the registrant agreed to the Terms and Conditions
@@ -85,6 +84,52 @@ export async function POST(request: Request) {
             { error: "You must agree to the Terms and Conditions to participate in the AU-IBAR walk" },
             { status: 400 }
         )
+    }
+
+    // --- DATA STORAGE --- //
+    const isCorporateGroup = data.registrationType === "Corporate Group";
+
+    // Initialize variables for tshirt size data
+    let tshirtSize: string | null = null;
+    let tshirtBreakdown: Record<string, number> | null = null;
+    let groupSize = 1;
+
+    if (isCorporateGroup) {
+
+        groupSize = Number(data.groupSize) || 0;
+
+        if (groupSize < 1) {
+            return NextResponse.json(
+                { error: "Group size must be at least 1" },
+                { status: 400 }
+            );
+        }
+
+        tshirtBreakdown = {};
+        let totalEntered = 0;
+
+        for (const size of TSHIRT_SIZES) {
+            const qty = Number(data[`sizeQty-${size}`]) || 0;
+            tshirtBreakdown[size] = qty;
+            totalEntered += qty;
+        }
+
+        if (totalEntered !== groupSize) {
+            return NextResponse.json(
+                { error: `Size quantities (${totalEntered}) must add up to the group size (${groupSize})` },
+                { status: 400 }
+            )
+        }
+
+    } else {
+        if (!data.tshirtSize) {
+            return NextResponse.json(
+                { error: "Please choose your preferred T-Shirt size" },
+                { status: 400 }
+            );
+        }
+
+        tshirtSize = data.tshirtSize;
     }
 
     // Map camelCase (frontend) to snake_case (database columns)
@@ -96,7 +141,8 @@ export async function POST(request: Request) {
         nationality: data.nationality,
         age: Number(data.age),
         gender: data.gender,
-        tshirt_size: data.tshirtSize,
+        tshirt_size: tshirtSize,
+        tshirt_breakdown: tshirtBreakdown,
         registration_type: data.registrationType,
         group_size: data.groupSize ? Number(data.groupSize) : 1
     });
