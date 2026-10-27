@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneRegex = /^(?:\+254|0)[17]\d{8}$/;
 
-    // Define the required fields per participant registration
+    // Define the required fields that's uniform per participant registrant
     const baseRequiredFields = [
         "firstName",
         "lastName",
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
         // Check for any missing required fields
         if (!data[field]) {
             return NextResponse.json(
-                { error: `Please fill in the required field: ${formatFieldName(field)}` },
+                { error: `Please fill in the required field: ${formatFieldName(field)}.` },
                 { status: 400 }
             )
         }
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         // Verify user entered a valid email
         if (!emailRegex.test(data.email)) {
             return NextResponse.json(
-                { error: "Please enter a valid email address" },
+                { error: "Please enter a valid email address." },
                 { status: 400 }
             )
         }
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
         // Verify user entered a valid email
         if (!phoneRegex.test(data.telephone)) {
             return NextResponse.json(
-                { error: "Please enter a valid telephone number" },
+                { error: "Please enter a valid telephone number." },
                 { status: 400 }
             )
         }
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
     // Check if the registrant agreed to the Terms and Conditions
     if (data.agreedToTerms !== "on") {
         return NextResponse.json(
-            { error: "You must agree to the Terms and Conditions to participate in the AU-IBAR walk" },
+            { error: "You must agree to the Terms and Conditions to participate in the AU-IBAR walk." },
             { status: 400 }
         )
     }
@@ -94,18 +94,24 @@ export async function POST(request: Request) {
     let tshirtBreakdown: Record<string, number> | null = null;
     let groupSize = 1;
 
+    // Case 1: T-shirt size selection as a group
     if (isCorporateGroup) {
 
+        // Initialize the group size to the user input
         groupSize = Number(data.groupSize) || 0;
 
+        // Throw an error if group size is less than 1
         if (groupSize < 1) {
             return NextResponse.json(
-                { error: "Group size must be at least 1" },
+                { error: "Group size must be at least 1." },
                 { status: 400 }
             );
         }
 
+        // Initialize object to store tshirt size and their corresponding quantity
         tshirtBreakdown = {};
+
+        // Initilize a counter to keep track of the number of group tshirts (error-checking purposes)
         let totalEntered = 0;
 
         for (const size of TSHIRT_SIZES) {
@@ -114,17 +120,22 @@ export async function POST(request: Request) {
             totalEntered += qty;
         }
 
+        // Check if the # of tshirts is equal to the group size entered by the user
         if (totalEntered !== groupSize) {
             return NextResponse.json(
-                { error: `Size quantities (${totalEntered}) must add up to the group size (${groupSize})` },
+                { error: `Size quantities (${totalEntered}) must add up to the group size (${groupSize}).` },
                 { status: 400 }
             )
         }
 
-    } else {
+    }
+
+    // Case 2: T-shirt size selection as an individual
+    else {
+
         if (!data.tshirtSize) {
             return NextResponse.json(
-                { error: "Please choose your preferred T-Shirt size" },
+                { error: "Please choose your preferred T-Shirt size." },
                 { status: 400 }
             );
         }
@@ -144,7 +155,7 @@ export async function POST(request: Request) {
         tshirt_size: tshirtSize,
         tshirt_breakdown: tshirtBreakdown,
         registration_type: data.registrationType,
-        group_size: data.groupSize ? Number(data.groupSize) : 1
+        group_size: groupSize
     });
 
     // Check for any server errors when inserting registrant data into database
