@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
 
+// Define the valid partnership types
+const VALID_PARTNERSHIP_TYPES = ["Vendor", "Exhibitor", "Partner"];
+
 // Server-side validation before inserting partner data to database
 export async function POST(request: Request) {
+
+    // Define the regex for valid email and phone number
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^(?:\+254|0)[17]\d{8}$/;
 
     // Save the data sent from the client
     const data = await request.json();
@@ -16,28 +23,55 @@ export async function POST(request: Request) {
         "organisation",
         "country",
         "partnershipType",
-        "partnershipReason"
+        "partnershipInquiry"
     ];
 
-    // Define the valid partnership types
-    const validPartnershipTypes = ["Vendor", "Exhibitor", "Partner"];
+    const formatFieldName = (field: string) => {
 
-    // Check for any missing fields 
-    for (const field of requiredFields) {
-        if (!data[field]) {
-            return NextResponse.json(
-                { error: `Missing required field: ${field}` },
-                { status: 400 }
-            )
+        const labels: Record<string, string> = {
+            firstName: "First Name",
+            lastName: "Last Name",
+            telephone: "Telephone Number",
+            email: "Email Address",
+            organisation: "Organisation Name",
+            country: "Country",
+            partnershipType: "Partnership Type",
+            partnershipReason: "Partnership Inquiry"
         }
     }
 
-    // Verify partnership type
-    if (!validPartnershipTypes.includes(data.partnershipType)) {
-        return NextResponse.json(
-            { error: "Invalid partnership type" },
-            { status: 400 }
-        )
+    // Check for any missing fields 
+    for (const field of requiredFields) {
+
+        if (!data[field]) {
+            return NextResponse.json(
+                { error: `Please fill in the required field: ${formatFieldName(field)}.` },
+                { status: 400 }
+            )
+        }
+
+        // Validate the telephone number
+        if(!phoneRegex.test(data.telephone)) {
+            return NextResponse.json(
+                { error: "Please enter a valid telephone number." },
+                { status: 400 }
+            )
+        }
+        // Validate the email
+        if(!emailRegex.test(data.email)) {
+            return NextResponse.json(
+                { error: "Please enter a valid email address." },
+                { status: 400}
+            )
+        }
+
+        // Verify partnership type
+        if (!VALID_PARTNERSHIP_TYPES.includes(data.partnershipType)) {
+            return NextResponse.json(
+                { error: "Please register with a valid partnership form." },
+                { status: 400 }
+            )
+        }
     }
 
     // Check if the user agreed to the Terms and Conditions
@@ -57,16 +91,16 @@ export async function POST(request: Request) {
         organisation: data.organisation,
         country: data.country,
         partnership_type: data.partnershipType,
-        partnership_reason: data.partnershipReason
+        partnership_inquiry: data.partnershipInquiry
     })
 
-    // Check for any server errors when inserting partnership data into database
+    // Check for any server errors when inserting registrant data into database
     if (error) {
         console.error("Supabase insert error: ", error);
         return NextResponse.json(
-            { error: "Something went wrong saving your partnership inquiry." },
+            { error: "We ran into an issue submitting your registration. Please check your details and try again." },
             { status: 500 }
-        );
+        )
     }
 
     return NextResponse.json(
