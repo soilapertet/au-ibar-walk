@@ -12,14 +12,14 @@ export default function RegistrationModal() {
 
     const { modalType, closeModal } = useModal();
     const [submitted, setSubmitted] = useState(false);
-    const [hasError, setHasError] = useState(false);         // Track error state when registering user
 
     let dataObj = null;
+    let partnershipType = "";
+
     const registrants = ["child", "corporate", "participant"];
     const partnerTypes = ["partner", "vendor", "exhibitor"];
 
     type PartnerType = "partner" | "vendor" | "exhibitor";
-
 
     if (!modalType) {
         return null;
@@ -39,7 +39,8 @@ export default function RegistrationModal() {
     }
 
     if (isPartnershipType(modalType)) {
-        dataObj = partnershipData[modalType]
+        dataObj = partnershipData[modalType];
+        partnershipType = modalType.charAt(0).toUpperCase() + modalType.slice(1);
     }
 
     return (
@@ -70,7 +71,6 @@ export default function RegistrationModal() {
                 {!submitted && registrants.includes(modalType) && (
                     <RegistrationForm
                         onSuccess={handleSuccess}
-                        onError={setHasError}
                     />
                 )}
                 {!submitted && partnerTypes.includes(modalType) && (
@@ -80,6 +80,7 @@ export default function RegistrationModal() {
                         <p className="lead" id="modalLead" style={{ fontSize: "15px", marginBottom: "5px" }}>{dataObj?.lead}</p>
                         <PartnershipForm
                             onSuccess={handleSuccess}
+                            partnershipType={partnershipType}
                         />
                     </div>
                 )}

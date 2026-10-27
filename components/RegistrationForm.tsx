@@ -8,10 +8,9 @@ const TSHIRT_SIZES = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
 
 interface RegistrationFormProps {
     onSuccess: () => void;
-    onError?: (hasError: boolean) => void;
 }
 
-export default function RegistrationForm({ onSuccess, onError }: RegistrationFormProps) {
+export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
 
     const [showTerms, setShowTerms] = useState(false);
     const [groupSize, setGroupSize] = useState(0);
@@ -30,10 +29,8 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
     const topRef = useRef<HTMLDivElement>(null);
 
     function handleSetError(msg: string | null) {
+
         setError(msg);
-        if (onError) {
-            onError(!!msg);
-        }
 
         if (msg) {
             setTimeout(() => {
@@ -49,11 +46,16 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
         }));
     }
 
-    // Review what's going in this function
+    // Define a function to handle form submission
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        
+        // Prevent the default full-reload submit behaviour
         e.preventDefault();
+
+        // Clear any previous error messages
         handleSetError(null);
 
+        // Throw an alert if the # of tshirts does not equal the group size
         if (participationType === "Corporate Group" && totalEntered !== groupSize) {
             alert(`Size quantities (${totalEntered}) must add up to your group size (${groupSize}).`);
             return;
@@ -61,6 +63,7 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
 
         setLoading(true);
 
+        // Gathers every named field in the form into a plain object
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
@@ -68,6 +71,8 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
         console.log("Form Data Entries: ", data);
 
         try {
+
+            // Make a POST http request to the register route
             const response = await fetch("/api/register", {
                 method: "POST",
                 headers: {
@@ -76,6 +81,7 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                 body: JSON.stringify(data),
             });
 
+            // Parse the response body as JSON and returns a real JavaScript object
             const result = await response.json();
 
             if (!response.ok) {
@@ -176,11 +182,11 @@ export default function RegistrationForm({ onSuccess, onError }: RegistrationFor
                                 name="email"
                                 type="email"
                                 inputMode="email"
-                                placeholder="e.g. janedoe@email.com"
+                                placeholder="e.g. janedoe@example.com"
                                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                                 onInvalid={(e) =>
                                     (e.target as HTMLInputElement).setCustomValidity(
-                                        "Please enter a valid email address (e.g., jane@example.com)"
+                                        "Please enter a valid email address (e.g., janedoe@example.com)"
                                     )
                                 }
                                 onInput={(e) =>

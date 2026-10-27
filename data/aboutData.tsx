@@ -13,7 +13,7 @@ export const aboutData : Data[] = [
         id: 1,
         icon: Eye,
         title: "Make the Work Visible",
-        detail: "AU-IBAR's work is largely invisible to the public. the AU-IBAR Walk creates a public platform to bring that work into view."
+        detail: "AU-IBAR's work is largely recongized in the Animal Resources sector. the AU-IBAR Walk creates a public platform to bring that work into view."
     },
     {
         id: 2,
