@@ -46,7 +46,6 @@ export default function Footer() {
                         <a href="#involve">Vendor</a>
                         <a href="#involve">Exhibitor</a>
                         <Link href="/#faq">FAQ</Link>
-                        <TermsNavLink />
                     </div>
                 </div>
                 {/* Col 4: Disclaimer & Policies */}
@@ -54,6 +53,7 @@ export default function Footer() {
                     <h3 className="foot-heading">Disclaimer and Policies</h3>
                     <div className="foot-links">
                         <a href="#">Return Policy</a>
+                        <TermsNavLink/>
                         <a
                             href="https://www.au-ibar.org/cookie-policy"
                             target="_blank"

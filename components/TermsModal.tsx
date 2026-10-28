@@ -1,4 +1,5 @@
 import TermsAndConditions from "./TermsAndConditions";
+import { X } from "lucide-react";
 
 interface TermsModalProps {
     open: boolean;
@@ -6,17 +7,33 @@ interface TermsModalProps {
 }
 
 export default function TermsModal({ open, onClose }: TermsModalProps) {
-
     if (!open) return null;
 
     return (
-        <section className="modal terms-modal">
-            <div className="modalbox" onClick={(e) => e.stopPropagation()}>
-                <button className="close" onClick={onClose}>×</button>
-                <div className="modal-scroll">
+        <div className="modal-backdrop" onClick={onClose}>
+            <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+               
+                {/* Sticky Header with a Prominent Close Button */}
+                <div className="modal-sticky-header">
+                    <span className="modal-badge">Official Policy</span>
+                    <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
+                        <X size={18} />
+                    </button>
+                </div>
+
+                {/* Scrollable Body */}
+                <div className="modal-scroll-body">
                     <TermsAndConditions />
                 </div>
+
+                {/* Bottom Action Footer for Easy Exit */}
+                <div className="modal-sticky-footer">
+                    <button className="modal-action-btn" onClick={onClose}>
+                        I Understand, Close
+                    </button>
+                </div>
+
             </div>
-        </section>
-    )
+        </div>
+    );
 }

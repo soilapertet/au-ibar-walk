@@ -684,6 +684,7 @@ h2 {
   text-decoration: none;
   font-size: 14px;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .foot-links a:hover {
@@ -710,9 +711,217 @@ h2 {
   }
 }
 
-.terms-modal p {
+/* Terms and Conditions Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 45, 28, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-sticky-header {
+  padding: 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #eef3f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.modal-badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--green);
+  background: #eaf5df;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.modal-scroll-body {
+  padding: 28px 28px 32px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d7e2dc transparent;
+}
+
+.modal-scroll-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scroll-body::-webkit-scrollbar-thumb {
+  background-color: #d7e2dc;
+  border-radius: 999px;
+}
+
+.modal-close-btn {
+  background: #f1f5f2;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
   color: var(--ink);
-  max-width: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #e1e8e3;
+  transform: scale(1.05);
+}
+
+.modal-sticky-footer {
+  padding: 16px 24px;
+  background: #f9fbf9;
+  border-top: 1px solid #eef3f0;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.modal-action-btn {
+  background: var(--green);
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(8, 120, 61, 0.2);
+}
+
+.modal-action-btn:hover {
+  background: var(--deep);
+  transform: translateY(-1px);
+}
+
+/* Terms and Conditions Content */
+.terms-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--deep);
+  line-height: 1.25;
+  margin: 0 0 16px 0;
+}
+
+.terms-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.meta-pill {
+  font-size: 12px;
+  background: #f4f8f5;
+  border: 1px solid #e2ece5;
+  color: #4a6356;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.meta-pill strong {
+  color: var(--deep);
+}
+
+.terms-intro {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* Cards Layout */
+.terms-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.term-card {
+  background: #fafcfb;
+  border: 1px solid #e7efe9;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: border-color 0.2s ease;
+}
+
+.term-card:hover {
+  border-color: #c5dacd;
+}
+
+.term-num {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--green);
+  background: #eaf5df;
+  padding: 4px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.term-card h3 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--deep);
+  margin: 0 0 6px 0;
+}
+
+.term-card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #55665d;
+  margin: 0;
+}
+
+/* Bottom Disclaimer Callout */
+.terms-footer-note {
+  margin-top: 24px;
+  background: #fff8f8;
+  border: 1px solid #f2dede;
+  padding: 14px 16px;
+  border-radius: 12px;
+}
+
+.terms-footer-note p {
+  margin: 0;
+  font-size: 12px;
+  color: #902a2a;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .terms-footer-link {
@@ -723,7 +932,6 @@ h2 {
   font: inherit;
   font-size: 12px;
   color: #000;
-  /* whatever you actually want — this breaks the inheritance chain */
   text-decoration: underline;
   cursor: pointer;
 }

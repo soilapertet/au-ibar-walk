@@ -5,18 +5,12 @@ import TermsModal from "./TermsModal";
 
 export default function TermsNavLink() {
 
-    const [open, setOpen] = useState(false);
+    const [showTerms, setShowTerms] = useState(false);
 
     return (
         <>
-            <button
-                type="button"
-                className="nav-text-link"
-                onClick={() => setOpen(true)}
-            >
-                Terms & Conditions
-            </button>
-            <TermsModal open={open} onClose={() => setOpen(false)} />
+            <a onClick={() => setShowTerms(true)}>Terms & Conditions</a>
+            <TermsModal open={showTerms} onClose={() => setShowTerms(false)} />
         </>
     )
 }
