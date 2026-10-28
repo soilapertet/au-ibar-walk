@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TermsNavLink from "./TermsNavLink";
 import { MapPin, Phone, Mail } from "lucide-react";
+import RefundNavLink from "./ReturnNavLink";
 
 export default function Footer() {
     return (
@@ -30,7 +31,7 @@ export default function Footer() {
                         </div>
                         <div className="foot-contact-item">
                             <Phone size={18} className="foot-icon" />
-                            <span>+254 (20) 3674 200</span>
+                            <span>+254 (20) 3674 206</span>
                         </div>
                         <div className="foot-contact-item">
                             <Mail size={18} className="foot-icon" />
@@ -52,7 +53,7 @@ export default function Footer() {
                 <div className="foot-col">
                     <h3 className="foot-heading">Disclaimer and Policies</h3>
                     <div className="foot-links">
-                        <a href="#">Return Policy</a>
+                        <RefundNavLink/>
                         <TermsNavLink/>
                         <a
                             href="https://www.au-ibar.org/cookie-policy"

@@ -9,7 +9,14 @@ export default function TermsNavLink() {
 
     return (
         <>
-            <a onClick={() => setShowTerms(true)}>Terms & Conditions</a>
+            <a
+                onClick={(e) => {
+                    e.preventDefault()
+                    setShowTerms(true)
+                }}
+            >
+                Terms & Conditions
+            </a>
             <TermsModal open={showTerms} onClose={() => setShowTerms(false)} />
         </>
     )
