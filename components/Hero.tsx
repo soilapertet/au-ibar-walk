@@ -7,7 +7,15 @@ export default function Hero() {
             <div className="hero-inner">
                 <div>
                     <div className="eyebrow">A Continental Movement</div>
-                    <h1>Walk for <span>Livelihoods.</span><br />Walk for Life.</h1>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        margin: "5px 0"
+                    }}>
+                        <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b" }}>Animal Resources.</span></h2>
+                        <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b" }}>Livelihoods</span></h2>
+                        <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b"}}>Life.</span></h2>
+                    </div>
                     <p className="tag">
                         The AU-IBAR Awareness Walk brings people, livestock, livelihoods and communities together
                         — one step at a time.
