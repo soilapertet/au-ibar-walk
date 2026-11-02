@@ -13,7 +13,7 @@ export default function Hero() {
                         margin: "5px 0"
                     }}>
                         <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b" }}>Animal Resources.</span></h2>
-                        <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b" }}>Livelihoods</span></h2>
+                        <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b" }}>Livelihoods.</span></h2>
                         <h2 style={{  color: "#fffaf0", fontSize: "40px", marginTop: "0px" }}>Walk for <span style={{ color: "#f9d47b"}}>Life.</span></h2>
                     </div>
                     <p className="tag">
