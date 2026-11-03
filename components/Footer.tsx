@@ -45,7 +45,7 @@ export default function Footer() {
                     <div className="mini-links">
                         <a href="#involve">Partner</a>
                         <a href="#involve">Vendor</a>
-                        <a href="#involve">Exhibitor</a>
+                        <a href="#involve">Sponsor</a>
                         <Link href="/#faq">FAQ</Link>
                     </div>
                 </div>

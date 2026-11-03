@@ -17,9 +17,9 @@ export default function FAQ() {
                             process will be provided once confirmed.</p>
                     </details>
                     <details>
-                        <summary>Can organisations become partners, vendors or exhibitors?</summary>
-                        <p>Yes. Use the Get Involved section to submit an expression of interest for partnership, vending or
-                            exhibition opportunities.</p>
+                        <summary>Can organisations become partners, vendors or sponsors?</summary>
+                        <p>Yes. Use the Get Involved section to submit your interest for partnership, vending or
+                            sponsoring opportunities.</p>
                     </details>
                     <details>
                         <summary>Where does the AU-IBAR Walk start and finish?</summary>

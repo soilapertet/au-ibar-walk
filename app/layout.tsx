@@ -10,7 +10,7 @@ import RegisterButton from "@/components/RegisterButton";
 
 export const metadata: Metadata = {
   title: "AU-IBAR Awareness Walk",
-  description: "Join the AU-IBAR Awareness Walk — a 5KM community walk at AU-IBAR Campus, Westlands on 28 Nov 2026. Register as a participant, vendor, exhibitor or partner."
+  description: "Join the AU-IBAR Awareness Walk — a 5KM community walk at AU-IBAR Campus, Westlands on 28 Nov 2026. Register as a participant, vendor, sponsor or partner."
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

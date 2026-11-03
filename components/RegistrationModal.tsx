@@ -17,9 +17,9 @@ export default function RegistrationModal() {
     let partnershipType = "";
 
     const registrants = ["child", "corporate", "participant"];
-    const partnerTypes = ["partner", "vendor", "exhibitor"];
+    const partnerTypes = ["partner", "vendor", "sponsor"];
 
-    type PartnerType = "partner" | "vendor" | "exhibitor";
+    type PartnerType = "partner" | "vendor" | "sponsor";
 
     if (!modalType) {
         return null;
@@ -35,7 +35,7 @@ export default function RegistrationModal() {
     }
 
     function isPartnershipType(type: ModalType): type is PartnerType {
-        return type === "partner" || type === "vendor" || type === "exhibitor"
+        return type === "partner" || type === "vendor" || type === "sponsor"
     }
 
     if (isPartnershipType(modalType)) {

@@ -1,4 +1,4 @@
-import { Handshake, LucideIcon, ShoppingBag, Store } from "lucide-react";
+import { Handshake, LucideIcon, ShoppingBag, HandCoins } from "lucide-react";
 import { ModalType } from "@/components/ModalContext";
 
 // Define the blueprint/structure of each data item
@@ -26,17 +26,16 @@ export const getInvolvedData : Data [] = [
         icon: ShoppingBag,
         modalType: "vendor",
         title: "Become a Vendor",
-        price: "KSH. 10,000",
+        price: "KSH. 50,000",
         description: "Showcase products and services to participants and visitors in a vibrant event environment.",
         buttonLabel: "REGISTER AS A VENDOR →"
     },
     {
         id: 3,
-        icon: Store,
-        modalType: "exhibitor",
-        title: "Become an Exhibitor",
-        price: "KSH. 20,000",
+        icon: HandCoins,
+        modalType: "sponsor",
+        title: "Become a Sponsor",
         description: "Put your organisation, innovation or community initiative in the spotlight.",
-        buttonLabel: "REGISTER AS AN EXHIBITOR →"
+        buttonLabel: "REGISTER AS A SPONSOR →"
     }
 ]

@@ -182,7 +182,7 @@ export default function PartnershipForm({ onSuccess, partnershipType }: Partners
                             <label>Why would you like to partner with the AU-IBAR Walk?</label>
                             <textarea
                                 name="partnershipInquiry"
-                                placeholder="Tell us about your organisation/vendor/exhibition and how you'd like to support the AU-IBAR Walk"
+                                placeholder="Tell us about your organisation or vendor and how you'd like to support the AU-IBAR Walk"
                                 required
                             />
                         </div>

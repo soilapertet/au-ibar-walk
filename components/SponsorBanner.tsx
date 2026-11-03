@@ -18,7 +18,7 @@ export default function SponsorBanner() {
                     rel="noopener noreferrer"
                     style={{
                         display: "block",
-                        width: "18%",
+                        width: "16%",
                         marginTop: "10px",
                         cursor: "pointer"
                     }}
@@ -37,7 +37,7 @@ export default function SponsorBanner() {
                     rel="noopener noreferrer"
                     style={{
                         display: "block",
-                        width: "26%",
+                        width: "24%",
                         marginTop: "10px",
                         cursor: "pointer"
                     }}

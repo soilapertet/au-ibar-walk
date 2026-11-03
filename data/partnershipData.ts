@@ -4,7 +4,7 @@ interface Data {
     lead: string;
 }
 
-export const partnershipData : Record<"partner" | "vendor" | "exhibitor", Data>= {
+export const partnershipData : Record<"partner" | "vendor" | "sponsor", Data>= {
     partner: {
         kicker: 'Partnerships',
         title: 'Become a Partner',
@@ -15,9 +15,9 @@ export const partnershipData : Record<"partner" | "vendor" | "exhibitor", Data>=
         title: 'Become a Vendor',
         lead: "Tell us about your products or services, and how you'd like to take part on the day."
     },
-    exhibitor: {
-        kicker: 'Exhibition',
-        title: 'Become an Exhibitor',
-        lead: "Tell us what you'd like to showcase to participants and visitors."
+    sponsor: {
+        kicker: 'Sponsorship',
+        title: 'Become a Sponsor',
+        lead: "Sponsor the event and connect with participants and visitors. Tell us how you'd like to get involved."
     }
 }

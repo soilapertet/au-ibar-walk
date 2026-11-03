@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import RegistrationModal from "./RegistrationModal";
 
 // Specify which version of the modal should show
-export type ModalType = "participant" | "corporate" | "child" | "vendor" | "exhibitor" | "partner";
+export type ModalType = "participant" | "corporate" | "child" | "vendor" | "sponsor" | "partner";
 
 // Defines the blueprint/structure of the broadcast
 interface ModalContextValue {

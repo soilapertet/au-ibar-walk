@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
 
 // Define the valid partnership types
-const VALID_PARTNERSHIP_TYPES = ["Vendor", "Exhibitor", "Partner"];
+const VALID_PARTNERSHIP_TYPES = ["Vendor", "Sponsor", "Partner"];
 
 // Server-side validation before inserting partner data to database
 export async function POST(request: Request) {
