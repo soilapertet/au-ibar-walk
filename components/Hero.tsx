@@ -1,6 +1,9 @@
 import Image from "next/image";
 import RegisterButton from "./RegisterButton";
 
+// --- CHANGE: UPDATE LINK TO TICKETSASA LINK --- //
+const LINK : string = "https://ecobank.com/personal-banking";
+
 export default function Hero() {
     return (
         <section className="hero" id="home">
@@ -21,7 +24,7 @@ export default function Hero() {
                         — one step at a time.
                     </p>
                     <div className="hero-actions">
-                        <RegisterButton type="participant" className="btn">JOIN THE WALK</RegisterButton>
+                        <RegisterButton link={LINK} className="btn">JOIN THE WALK</RegisterButton>
                         <a className="btn gold" href="#involve">PARTNER WITH US</a></div>
                     <div className="event-strip">
                         <div><b>DATE</b><small>28 November 2026</small></div>

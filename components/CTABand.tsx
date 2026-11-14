@@ -1,6 +1,9 @@
 import Countdown from "./Countdown";
 import RegisterButton from "./RegisterButton";
 
+// --- CHANGE: UPDATE LINK TO TICKETSASA LINK --- //
+const LINK : string = "https://ecobank.com/personal-banking";
+
 export default function CTABand() {
     return (
         <section className="section band" id="gallery">
@@ -14,7 +17,7 @@ export default function CTABand() {
             </div>
             <div className="section-outer">
                 <Countdown />
-                <RegisterButton type="participant" className="btn gold">REGISTER NOW</RegisterButton>
+                <RegisterButton link={LINK} className="btn gold">REGISTER NOW</RegisterButton>
             </div>
         </section>
     )

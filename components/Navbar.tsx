@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import RegisterButton from "./RegisterButton";
-import TermsNavLink from "./TermsNavLink";
+
+// --- CHANGE: UPDATE LINK TO TICKETSASA LINK --- //
+const LINK : string = "https://ecobank.com/personal-banking";
+
 export default function Navbar() {
     return (
         <nav>
@@ -42,7 +45,7 @@ export default function Navbar() {
                 <Link href="/#route">Route Info</Link>
                 <Link href="/#faq">FAQ</Link>
 
-                <RegisterButton type="participant" className="btn">Register Now</RegisterButton>
+                <RegisterButton link={LINK} className="btn">Register Now</RegisterButton>
             </div>
         </nav>
     )

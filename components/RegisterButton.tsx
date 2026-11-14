@@ -1,25 +1,27 @@
 "use client";
 
 import { ReactNode } from "react";
-import { useModal, ModalType} from './ModalContext';
+import { useModal, ModalType } from './ModalContext';
 
 interface RegisterButtonProps {
-    type: ModalType;
+    link: string;
     className?: string;
     children: ReactNode;
 }
 
-export default function RegisterButton({ type, className, children } : RegisterButtonProps) {
-    
+export default function RegisterButton({ link, className, children }: RegisterButtonProps) {
+
     // Access the openModal helper function within the receiver
-    const { openModal } = useModal();
+    // const { openModal } = useModal();
 
     return (
-        <button 
-            className={className} 
-            onClick={() => openModal(type)}
+        <a
+            href={link}
+            className={className}
+            target="_blank"
+            rel="noopener noreferrer"
         >
             {children}
-        </button>
+        </a>
     )
 }

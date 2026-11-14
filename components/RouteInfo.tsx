@@ -1,6 +1,9 @@
 import Image from "next/image";
 import RegisterButton from "./RegisterButton";
 
+// --- CHANGE: UPDATE LINK TO TICKETSASA LINK --- //
+const LINK : string = "https://ecobank.com/personal-banking";
+
 export default function RouteInfo() {
     return (
         <section className="section" id="route">
@@ -61,7 +64,7 @@ export default function RouteInfo() {
                                 target="_blank" rel="noopener noreferrer">
                                 OPEN INTERACTIVE ROUTE →
                             </a>
-                            <RegisterButton type="participant" className="btn">REGISTER →</RegisterButton>
+                            <RegisterButton link={LINK} className="btn">REGISTER →</RegisterButton>
                         </div>
                     </div>
                 </div>

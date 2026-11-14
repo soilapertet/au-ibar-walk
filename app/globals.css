@@ -93,6 +93,14 @@ nav {
   color: #274238
 }
 
+.links a.btn {
+  color: #fff;
+}
+
+.links a.btn:hover {
+  color: #fff;
+}
+
 .links a:hover {
   color: var(--green)
 }
