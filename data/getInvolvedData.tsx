@@ -35,7 +35,7 @@ export const getInvolvedData : Data [] = [
         icon: HandCoins,
         modalType: "sponsor",
         title: "Become a Sponsor",
-        description: "Put your organisation, innovation or community initiative in the spotlight.",
+        description: "Put your organisation, innovation or community initiative in the spotlight, and gain high-visibility exposure.",
         buttonLabel: "REGISTER AS A SPONSOR →"
     }
 ]
