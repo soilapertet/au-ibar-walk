@@ -97,6 +97,10 @@ nav {
   color: var(--green)
 }
 
+.links a.btn {
+  color: #fff;
+}
+
 .btn {
   border: 0;
   border-radius: 999px;

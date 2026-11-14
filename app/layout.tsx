@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "Join the AU-IBAR Awareness Walk — a 5KM community walk at AU-IBAR Campus, Westlands on 28 Nov 2026. Register as a participant, vendor, sponsor or partner."
 };
 
+// --- CHANGE: Update link to TicketSasa --- ///
+const LINK : string = "https://ecobank.com/personal-banking";
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
@@ -22,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           {children}
           <Footer />
-          <RegisterButton type="participant" className="floating-join"><span className="paw"><Footprints /></span> JOIN THE WALK</RegisterButton>
+          <RegisterButton link={LINK} className="floating-join"><span className="paw"><Footprints /></span> JOIN THE WALK</RegisterButton>
         </ModalProvider>
       </body>
     </html>

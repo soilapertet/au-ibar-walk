@@ -1,6 +1,8 @@
 import { getInvolvedData } from "@/data/getInvolvedData";
 import RegisterButton from "./RegisterButton";
 
+const LINK : string = "https://forms.cloud.microsoft/r/UnvjN22TRk";
+
 export default function GetInvolved() {
     return (
         <section className="section partner" id="involve">
@@ -26,7 +28,7 @@ export default function GetInvolved() {
                                 <Icon size={24}/>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
-                                <RegisterButton type={item.modalType} className="opp-action">{item.buttonLabel}</RegisterButton>
+                                <RegisterButton link={LINK} className="opp-action">{item.buttonLabel}</RegisterButton>
                             </div>
                         )
                     })}

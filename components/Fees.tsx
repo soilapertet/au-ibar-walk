@@ -1,6 +1,9 @@
 import { feesData } from "@/data/feesData";
 import RegisterButton from "./RegisterButton";
 
+// --- CHANGE: Update link to TicketSasa --- ///
+const LINK : string = "https://ecobank.com/personal-banking";
+
 export default function Fees() {
     return (
         <section className="section fees" id="fees">
@@ -24,7 +27,7 @@ export default function Fees() {
                                 <div className="price">{item.price}</div>
                                 {item.category === "Corporate Group" && <div className="per">per person</div>}
                                 <p>{item.description}</p>
-                               <RegisterButton type={item.modalType} className={`btn ${item.category === "Corporate Group" ? 'gold' : '' }`}>{item.buttonLabel}</RegisterButton>
+                               <RegisterButton link={LINK} className={`btn ${item.category === "Corporate Group" ? 'gold' : '' }`}>{item.buttonLabel}</RegisterButton>
                             </div>  
                         )
                     })}
